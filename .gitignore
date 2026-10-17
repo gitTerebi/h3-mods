@@ -1,0 +1,6 @@
+bin/
+vendor/H3API/bin/
+.vs/
+*.user
+*.aps
+__pycache__/
