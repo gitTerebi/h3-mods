@@ -3,15 +3,15 @@
 #include <stdio.h>
 #include "launcher_patch.h"
 
-// RVAs in HD_LauncherNative.dll from HD 5.8 R322, sha256 a0732902...7897d0
+// RVAs in HD_LauncherNative.dll sha256 875f2ae7...ed64aa (HD update of 2026-10-25)
 namespace
 {
-	constexpr DWORD RVA_LOAD_HOTA_EXIT_JMP  = 0x9869;
-	constexpr DWORD RVA_LOAD_PACKS_FILL     = 0x992C;
-	constexpr DWORD RVA_SAVE_HOTA_JE        = 0xA163;
-	constexpr DWORD RVA_SAVE_HOTA_EXIT_JMP  = 0xA18A;
-	constexpr DWORD RVA_SAVE_PACKS          = 0xA225;
-	constexpr DWORD RVA_VECTOR_AT           = 0xE6D5;
+	constexpr DWORD RVA_LOAD_HOTA_EXIT_JMP  = 0x9826;
+	constexpr DWORD RVA_LOAD_PACKS_FILL     = 0x98E9;
+	constexpr DWORD RVA_SAVE_HOTA_JE        = 0xA120;
+	constexpr DWORD RVA_SAVE_HOTA_EXIT_JMP  = 0xA147;
+	constexpr DWORD RVA_SAVE_PACKS          = 0xA1E2;
+	constexpr DWORD RVA_VECTOR_AT           = 0xE692;
 	constexpr DWORD RVA_PROFILES_VECTOR     = 0x3C2E4;
 	constexpr DWORD RVA_PROFILE_INDEX       = 0x378D0;
 	constexpr DWORD RVA_MAIN_TAB_HWND       = 0x3C044;
