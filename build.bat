@@ -39,6 +39,8 @@ call :Deploy "%ROOT%bin\Release\H3.KeyRemap.dll" "%PACKS%\KeyRemap"
 if errorlevel 1 exit /b 1
 call :Deploy "%ROOT%bin\Release\H3.MonsterHoverInfo.dll" "%PACKS%\MonsterHoverInfo"
 if errorlevel 1 exit /b 1
+call :Deploy "%ROOT%bin\Release\H3.AutoCombatAI.dll" "%PACKS%\AutoCombatAI"
+if errorlevel 1 exit /b 1
 call :Deploy "%ROOT%bin\Release\version.dll" "%H3_ROOT%"
 if errorlevel 1 exit /b 1
 if not exist "%H3_ROOT%\verreal.dll" copy /Y "%WINDIR%\SysWOW64\version.dll" "%H3_ROOT%\verreal.dll" >nul

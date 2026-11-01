@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TextColor", "src\TextColor\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HotaLoader", "src\HotaLoader\HotaLoader.vcxproj", "{A1B2C3D4-0001-0002-0003-000000000001}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AutoCombatAI", "src\AutoCombatAI\AutoCombatAI.vcxproj", "{E8A01B03-634C-4FAE-B3C0-73B4C7FF7FE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -39,6 +41,10 @@ Global
 		{A1B2C3D4-0001-0002-0003-000000000001}.Debug|x86.Build.0 = Release|Win32
 		{A1B2C3D4-0001-0002-0003-000000000001}.Release|x86.ActiveCfg = Release|Win32
 		{A1B2C3D4-0001-0002-0003-000000000001}.Release|x86.Build.0 = Release|Win32
+		{E8A01B03-634C-4FAE-B3C0-73B4C7FF7FE7}.Debug|x86.ActiveCfg = Debug|Win32
+		{E8A01B03-634C-4FAE-B3C0-73B4C7FF7FE7}.Debug|x86.Build.0 = Debug|Win32
+		{E8A01B03-634C-4FAE-B3C0-73B4C7FF7FE7}.Release|x86.ActiveCfg = Release|Win32
+		{E8A01B03-634C-4FAE-B3C0-73B4C7FF7FE7}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

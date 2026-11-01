@@ -128,6 +128,27 @@ namespace
 		return true;
 	}
 
+	constexpr DWORD TOWN_NEXT_KEY_HANDLER = 0x5D4D08;
+	constexpr DWORD TOWN_SCREEN_TOWN_INDEX = 0x6AAAB8;
+
+	bool g_town_tab_pressed = false;
+
+	int __stdcall WrapTownTabToFirst(LoHook* h, HookContext* c)
+	{
+		if (!g_town_tab_pressed)
+			return EXEC_DEFAULT;
+		g_town_tab_pressed = false;
+
+		H3Player* player = P_Main()->GetPlayer();
+		INT32& current = *reinterpret_cast<INT32*>(TOWN_SCREEN_TOWN_INDEX);
+		if (player && player->townsCount > 1 && current == player->townsCount - 1)
+		{
+			current = -1;
+			reinterpret_cast<H3TownManager*>(c->ebx)->dlg->townIndex = player->townsCount >= 3 ? -1 : 0;
+		}
+		return EXEC_DEFAULT;
+	}
+
 	bool IsPhysicalWasd(int virtual_key)
 	{
 		switch (virtual_key)
@@ -627,6 +648,8 @@ int __stdcall KeyRemapPlugin::FilterRawInput(HiHook* h, H3InputManager* This, in
 
 			// Match on the VK (see RawVirtualKey), apply via ReplaceRawKey.
 			const int vk = RawVirtualKey(raw_msg);
+			if (IsRawKeyDown(raw_msg))
+				g_town_tab_pressed = vk == VK_TAB;
 
 			if (vk == 'F')
 			{
@@ -639,6 +662,10 @@ int __stdcall KeyRemapPlugin::FilterRawInput(HiHook* h, H3InputManager* This, in
 			else if (vk == 'E')
 			{
 				ReplaceRawKey(raw_msg, NH3VKey::H3VK_S); // E -> S (swap so left hand stays on WASD)
+			}
+			else if (vk == VK_TAB)
+			{
+				ReplaceRawKey(raw_msg, NH3VKey::H3VK_DOWN);
 			}
 			else if (vk == 'S' || vk == 'D')
 			{
@@ -767,6 +794,7 @@ void KeyRemapPlugin::Start()
 {
 	Hook(0x4EC660, Splice, Thiscall, ::_HH_FilterRawInput);
 	Hook(0x408BA0, Splice, Thiscall, ::_HH_RemapAdventureKeys);
+	Hook(TOWN_NEXT_KEY_HANDLER, WrapTownTabToFirst);
 	// HOTA only: capture the session frame for F9 quickload's longjmp. Same spot
 	// SoD_SP hooks; under SoD, SoD_SP itself provides quickload so stay out of it.
 	if (IsHota())
